@@ -90,6 +90,18 @@ type VaultAuthTokenConfig struct {
 	v1.CommonCredentialSelectors `json:",inline"`
 }
 
+// VaultAuthAppRoleConfig represents configuration for Vault AppRole Auth Method.
+// https://developer.hashicorp.com/vault/docs/auth/approle
+type VaultAuthAppRoleConfig struct {
+	// Source of the credentials.
+	// +kubebuilder:validation:Enum=None;Secret;Environment;Filesystem
+	Source v1.CredentialsSource `json:"source"`
+
+	// CommonCredentialSelectors provides common selectors for extracting
+	// credentials.
+	v1.CommonCredentialSelectors `json:",inline"`
+}
+
 // ServiceAccountTokenSourceConfig represents configuration to retrieve a
 // Service Account Token
 type ServiceAccountTokenSourceConfig struct {
@@ -127,6 +139,9 @@ type VaultAuthConfig struct {
 	// Token configures Token Auth for Vault.
 	// +optional
 	Token *VaultAuthTokenConfig `json:"token,omitempty"`
+	// Token configures AppRole Auth for Vault.
+	// +optional
+	AppRole *VaultAuthAppRoleConfig `json:"app_role,omitempty"`
 	// Kubernetes configes Kubernetes Auth for Vault
 	// +optional
 	Kubernetes *VaultAuthKubernetesConfig `json:"kubernetes,omitempty"`
