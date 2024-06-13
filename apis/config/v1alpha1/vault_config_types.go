@@ -72,6 +72,10 @@ const (
 	// authenticate to Vault.
 	// https://developer.hashicorp.com/vault/docs/auth/kubernetes
 	VaultAuthKubernetes VaultAuthMethod = "Kubernetes"
+	// VaultAuthAppRole indicates that "AppRole Auth" will be used to
+	// authenticate to Vault.
+	// https://developer.hashicorp.com/vault/docs/auth/approle
+	VaultAuthAppRole VaultAuthMethod = "AppRole"
 )
 
 // VaultAuthTokenConfig represents configuration for Vault Token Auth Method.
