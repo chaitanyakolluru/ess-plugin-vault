@@ -171,10 +171,12 @@ func NewVaultStore(ctx context.Context, kube client.Client, cfg *v1alpha1.VaultC
 			return nil, errors.Wrap(err, errSetupAppRoleAuth)
 		}
 
-		_, err = c.Auth().Login(ctx, auth)
+		resp, err := c.Auth().Login(ctx, auth)
 		if err != nil {
 			return nil, errors.Wrap(err, errLoginAppRoleAuth)
 		}
+		c.SetToken(resp.Auth.ClientToken)
+
 	default:
 		return nil, errors.Errorf("%q is not supported as an auth method", cfg.Spec.Auth.Method)
 	}
