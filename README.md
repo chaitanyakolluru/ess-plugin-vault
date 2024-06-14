@@ -79,6 +79,9 @@ stringData:
     }
 ```
 
+Note: Above examples shows setting `app_role` source to `Secret` but other sources like 
+`Environment`, `InjectedIdentity` and `Filesystem` can also be used.
+
 And then reference this config in the `StoreConfig` resources for Crossplane and
 Provider GCP:
 
